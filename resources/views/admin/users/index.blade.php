@@ -48,14 +48,13 @@
                       <td>{{$user->id}}</td>
                       <td>{{$user->name}}</td>
                       <td>{{$user->email}}</td>
-                      <td>{{$user->role->name}}</td>
-                      <td>
+                      <td>{{$user->role->name}}</td>                     
+                      <td>                        
                         <form action="{{route('users.destroy',$user->id)}}" method="POST">
                           @method('DELETE')
                           @csrf
                           <button type="submit" class="btn bg-pink btn-xs">Delete</button>
-                        </form>
-                       
+                        </form>                       
                       </td>
                     </tr>
                     @endforeach
