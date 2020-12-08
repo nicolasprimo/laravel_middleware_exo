@@ -17,28 +17,28 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => "Fanny",
-                'email' => "fanny@aled.com",
+                'name' => "Membre",
+                'email' => "membre@membre.com",
                 'role_id' => 1,
-                'password' => Hash::make('fanny@aled.com'),
+                'password' => Hash::make('membre@membre.com'),
             ],
             [
-                'name' => "Ayhan",
-                'email' => "Ayhan@molengeek.com",
+                'name' => "Redacteur",
+                'email' => "redacteur@redacteur.com",
                 'role_id' => 2,
-                'password' => Hash::make('Ayhan@molengeek.com'),
+                'password' => Hash::make('redacteur@redacteur.com'),
                 ],
             [
-                'name' => "Elias",
-                'email' => "Elias@molengeek.com",
+                'name' => "Webmaster",
+                'email' => "webmaster@webmaster.com",
                 'role_id' => 3,
-                'password' => Hash::make('Elias@molengeek.com'),
+                'password' => Hash::make('webmaster@webmaster.com'),
             ],
             [
-                'name' => "Nicolas",
-                'email' => "nicolas@molengeek.com",
+                'name' => "Admin",
+                'email' => "admin@admin.com",
                 'role_id' => 4,
-                'password' => Hash::make('nicolas@molengeek.com'),
+                'password' => Hash::make('admin@admin.com'),
             ],
         ]);
     }

@@ -4,17 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function postsMembers()
+    {
+        $posts = Post::orderBy('id','desc')->simplePaginate(10);
+        return view('posts.index',compact('posts'));
+    }
     public function index()
     {
-        //
+        if(Auth::user()->role_id != 2){
+            $posts = Post::orderBy('id','desc')->simplePaginate(10);
+        }else{
+            $posts = Post::where('user_id',Auth::id())->simplePaginate(10);
+        }
+        return view('admin.posts.index',compact('posts'));
     }
 
     /**
@@ -24,7 +38,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -35,7 +49,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post;
+        $post->titre = $request->title;
+        $post->texte = $request->text;
+        $post->user_id = $request->user()->id;
+        $post->save();
+        return redirect()->back();
     }
 
     /**
@@ -57,7 +76,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $post = Post::find($post->id);
+        return view('admin.posts.edit',compact('post'));
     }
 
     /**
@@ -69,7 +89,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post = Post::find($post->id);
+        $post->titre = $request->title;
+        $post->texte = $request->text;
+        $post->save();
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +104,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Post::find($post->id)->delete();
+        return redirect()->back();
     }
 }
