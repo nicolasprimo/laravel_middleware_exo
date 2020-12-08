@@ -19,7 +19,7 @@ class AdministrationAcces
         if($request->user() && ($request->user()->role->name == "Admin" || $request->user()->role->name == "Webmaster" || $request->user()->role->name == "Rédacteur" )){
             return $next($request);
         }else{
-            return redirect('/')->withErrors('Vous devez être connecté pour accéder à cette page !');
+            return redirect('/')->withErrors("Vous n'avez pas les droits suffisant pour accèder à cette page.");
         }
     }
 }
