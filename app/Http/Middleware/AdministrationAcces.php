@@ -19,7 +19,7 @@ class AdministrationAcces
         if($request->user() && ($request->user()->role->name == "Admin" || $request->user()->role->name == "Webmaster" || $request->user()->role->name == "Rédacteur" )){
             return $next($request);
         }else{
-            return redirect('/');
+            return redirect('/')->withErrors('Vous devez être connecté pour accéder à cette page !');
         }
     }
 }
