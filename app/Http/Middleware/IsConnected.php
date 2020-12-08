@@ -19,7 +19,7 @@ class IsConnected
         if($request->user()){
             return $next($request);
         }else{
-            return redirect('/login');
+            return redirect('/')->withErrors('Vous devez être connecté pour accéder à cette page !');
         }
     }
 }

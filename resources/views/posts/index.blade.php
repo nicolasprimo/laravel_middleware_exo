@@ -3,6 +3,7 @@
 
 @section('content')
 <div class="my-3 p-3 bg-white rounded shadow-sm">
+  
     <h2 class="border-bottom border-gray pb-2 mb-0">Articles @if(Request()->page) page : {{ Request()->page}}@endif</h2>
     @foreach($posts as $post)
     <div class="media text-muted pt-3">

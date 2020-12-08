@@ -29,6 +29,6 @@ Route::get('/admin', function() {
 })->name('admin')->middleware('administrationAcces');
 
 
-Route::get('posts', [PostController::class, 'postsMembers'])->name('posts.members');
+Route::get('posts', [PostController::class, 'postsMembers'])->name('posts.members')->middleware('isConnected');
 Route::resource('admin/posts', PostController::class)->middleware(['isConnected','administrationAcces']);
 Route::resource('admin/users', UserController::class)->middleware(['isConnected','admin']);
