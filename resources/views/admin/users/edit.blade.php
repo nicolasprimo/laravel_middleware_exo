@@ -34,14 +34,18 @@
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="Email ..." name="email" value="{{$user->email}}">
                   </div>                          
+                  @if(Auth::id() != $user->id)
                   <div class="form-group">
                     <label>Role</label>
                     <select class="form-control" name="role_id">
                       @foreach($roles as $role)                   
+                        @can('upgrade-role',$role->id)
                         <option value="{{$role->id}}" {{$role->id == $user->role_id ? 'selected' : ''}}>{{$role->name}}</option>
-                      @endforeach                
+                        @endcan
+                      @endforeach
                     </select>
                   </div>
+                  @endif                
                 </div>
                 <!-- /.card-body -->
 

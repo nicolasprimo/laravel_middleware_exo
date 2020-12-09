@@ -82,13 +82,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('upgrade-role',$request->role_id);
         $user = User::find($id);
         $this->authorize('edit-user',$user);
         $user->name = $request->name;
         $user->email = $request->email;
+        // Je vérifie que l'on envoit pas un role->id via la requete qui soit plus grand que celui que j'ai le droit de selectionner
         $user->role_id = $request->role_id;
         $user->save();
-        return redirect()->back();
+        return redirect('admin/users');
     }
 
     /**

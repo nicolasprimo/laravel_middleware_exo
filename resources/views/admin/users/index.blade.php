@@ -53,7 +53,7 @@
                         @can('edit-user',$user)
                         <a href="{{route('users.edit', $user)}}"  class="btn bg-orange btn-xs btn-warning">Edit</a>  
                         @endcan  
-                        @can('delete-user',$user->role_id)
+                        @can('delete-user',$user)
                         <form action="{{route('users.destroy',$user->id)}}" method="POST" class="d-inline-block">
                           @method('DELETE')
                           @csrf
