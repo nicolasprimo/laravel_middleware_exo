@@ -67,6 +67,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('edit-user',$user);
         $user = User::find($user->id);
         $roles = Role::all();
         return view('admin.users.edit',compact('user','roles'));
@@ -81,7 +82,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $this->authorize('edit-user',$user);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role_id = $request->role_id;
+        $user->save();
+        return redirect()->back();
     }
 
     /**

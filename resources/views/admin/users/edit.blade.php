@@ -22,7 +22,8 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{route('users.store')}}" method="POST">
+              <form role="form" action="{{route('users.update',$user->id)}}" method="POST">
+                  @method('PUT')
                   @csrf
                 <div class="card-body">
                   <div class="form-group">
@@ -36,8 +37,8 @@
                   <div class="form-group">
                     <label>Role</label>
                     <select class="form-control" name="role_id">
-                      @foreach($roles as $role)
-                      <option value="{{$role->id}}" {{$role->id == $user->role_id ? 'selected' : ''}}>{{$role->name}}</option>
+                      @foreach($roles as $role)                   
+                        <option value="{{$role->id}}" {{$role->id == $user->role_id ? 'selected' : ''}}>{{$role->name}}</option>
                       @endforeach                
                     </select>
                   </div>
@@ -45,7 +46,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn bg-teal">Create</button>
+                  <button type="submit" class="btn btn-warning">Update</button>
                 </div>
               </form>
             </div>
