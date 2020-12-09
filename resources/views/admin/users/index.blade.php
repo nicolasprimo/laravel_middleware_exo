@@ -49,8 +49,9 @@
                       <td>{{$user->name}}</td>
                       <td>{{$user->email}}</td>
                       <td>{{$user->role->name}}</td>                     
-                      <td>                        
-                        <form action="{{route('users.destroy',$user->id)}}" method="POST">
+                      <td>                   
+                      <a href="{{route('users.edit', $user)}}"  class="btn bg-orange btn-xs btn-warning">Edit</a>      
+                        <form action="{{route('users.destroy',$user->id)}}" method="POST" class="d-inline-block">
                           @method('DELETE')
                           @csrf
                           <button type="submit" class="btn bg-pink btn-xs">Delete</button>

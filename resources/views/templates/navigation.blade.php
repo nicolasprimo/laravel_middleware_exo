@@ -27,6 +27,9 @@
       <li class="nav-item ">
         <a class="nav-link" href="{{ route('posts.members') }}">Articles</a>
       </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="{{ route('mails.index') }}">Contact</a>
+      </li>
       @auth      
        <li class="nav-item ">  
             <a href="{{ route('admin')  }}" class="nav-link">Administration</a>

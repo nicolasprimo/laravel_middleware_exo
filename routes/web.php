@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailSendedController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -32,3 +33,4 @@ Route::get('/admin', function() {
 Route::get('posts', [PostController::class, 'postsMembers'])->name('posts.members')->middleware('isConnected');
 Route::resource('admin/posts', PostController::class)->middleware(['isConnected','administrationAcces']);
 Route::resource('admin/users', UserController::class)->middleware(['isConnected','admin']);
+Route::resource('mails',MailSendedController::class);

@@ -23,11 +23,7 @@ class PostController extends Controller
     }
     public function index()
     {
-        if(Auth::user()->role_id != 2){
-            $posts = Post::orderBy('id','desc')->simplePaginate(10);
-        }else{
-            $posts = Post::where('user_id',Auth::id())->simplePaginate(10);
-        }
+        $posts = Post::orderBy('id','desc')->simplePaginate(10);   
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -104,6 +100,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete-post',$post);
         Post::find($post->id)->delete();
         return redirect()->back();
     }

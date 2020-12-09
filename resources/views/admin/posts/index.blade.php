@@ -49,14 +49,14 @@
                         <td>{{$post->titre}}</td>
                         <td>{{$post->user->name}}</td>
                         <td>
-                          <a href="{{route('posts.edit', $post)}}"  class="btn bg-orange btn-xs btn-warning">Edit</a>
-                          @can('delete-posts', $post)
+                          <a href="{{route('posts.edit', $post)}}"  class="btn bg-orange btn-xs btn-warning">Edit</a> 
+                          @can('delete-post',$post)
                           <form action="{{route('posts.destroy',$post)}}" method="post" class="d-inline-block">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn bg-pink btn-xs">Delete</button>
                           </form>
-                          @endcan
+                          @endcan                        
                         </td>
                       </tr>
                       @endforeach
